@@ -1147,12 +1147,11 @@ class AssetsBundle(object):
         else:
             url_for = self.context.get('url_for', lambda url: url)
             if css and self.stylesheets:
-                suffix = ''
+                suffix = '.0'
                 if request:
-                    ua = request.httprequest.user_agent
-                    if ua.browser == "msie" and int((ua.version or '0').split('.')[0]) < 10:
-                        suffix = '.0'
-                href = '/web/css%s/%s/%s' % (suffix, self.xmlid, self.version)
+                    #ua = request.httprequest.user_agent
+                    #if ua.browser == "msie" and int((ua.version or '0').split('.')[0]) < 10:
+                    href = '/web/css%s/%s/%s' % (suffix, self.xmlid, self.version)
                 response.append('<link href="%s" rel="stylesheet"/>' % url_for(href))
             if js:
                 src = '/web/js/%s/%s' % (self.xmlid, self.version)
